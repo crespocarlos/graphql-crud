@@ -16,17 +16,17 @@ const SongSchema: Schema = new mongoose.Schema({
   title: { type: String },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'user',
   },
   lyrics: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'lyric'
-    }
-  ]
+      ref: 'lyric',
+    },
+  ],
 })
 
-SongSchema.statics.addLyric = function(id: number, content: string) {
+SongSchema.statics.addLyric = function (id: number, content: string) {
   const Lyric = mongoose.model<ILyricModel>('lyric')
 
   return this.findById(id).then((song: ISongModel) => {
@@ -36,7 +36,7 @@ SongSchema.statics.addLyric = function(id: number, content: string) {
   })
 }
 
-SongSchema.statics.findLyrics = function(id: number) {
+SongSchema.statics.findLyrics = function (id: number) {
   return this.findById(id)
     .populate('lyrics')
     .then((song: ISongModel) => song.lyrics)

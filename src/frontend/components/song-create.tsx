@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import gql from 'graphql-tag'
-import { Link, hashHistory } from 'react-router'
+import { Link, useHistory } from 'react-router-dom'
 import query from '../queries/fetchSongs'
 import { useMutation } from '@apollo/react-hooks'
 
@@ -13,6 +13,7 @@ type SongCreateVariable = {
 }
 
 const SongCreate = () => {
+  const history = useHistory()
   const [title, setTitle] = useState('')
   const [addSong] = useMutation<SongCreatePayload, SongCreateVariable>(ADD_SONG)
 
@@ -21,8 +22,8 @@ const SongCreate = () => {
 
     addSong({
       variables: { title },
-      refetchQueries: [{ query }]
-    }).then(() => hashHistory.push('/'))
+      refetchQueries: [{ query }],
+    }).then(() => history.push('/'))
   }
 
   return (
@@ -31,7 +32,10 @@ const SongCreate = () => {
       <h3>Create a New Song</h3>
       <form onSubmit={onSubmit}>
         <label>Song Title:</label>
-        <input onChange={event => setTitle(event.target.value)} value={title} />
+        <input
+          onChange={(event) => setTitle(event.target.value)}
+          value={title}
+        />
       </form>
     </div>
   )

@@ -14,13 +14,13 @@ interface ILyric extends Model<ILyricModel> {
 const LyricSchema: Schema = new mongoose.Schema({
   song: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'song'
+    ref: 'song',
   },
   likes: { type: Number, default: 0 },
-  content: { type: String }
+  content: { type: String },
 })
 
-LyricSchema.statics.like = function(id: number) {
+LyricSchema.statics.like = function (id: number) {
   const Lyric = mongoose.model<ILyricModel>('lyric')
 
   return Lyric.findById(id).then((lyric: ILyricModel | null) => {

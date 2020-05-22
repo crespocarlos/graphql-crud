@@ -3,4 +3,7 @@ node_modules
 .vscode
 yarn.lock
 yarn-error.log
+mongo-volume
+dist
 
+    

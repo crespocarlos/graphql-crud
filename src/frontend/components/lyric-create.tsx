@@ -29,8 +29,8 @@ const LyricCreate: React.FC<LyricCreateProps> = ({ songId }) => {
     addLyricsToSong({
       variables: {
         content,
-        songId
-      }
+        songId,
+      },
     }).then(() => setContent(''))
   }
 
@@ -39,7 +39,7 @@ const LyricCreate: React.FC<LyricCreateProps> = ({ songId }) => {
       <label>Add a Lyric</label>
       <input
         value={content}
-        onChange={event => setContent(event.target.value)}
+        onChange={(event) => setContent(event.target.value)}
       />
     </form>
   )

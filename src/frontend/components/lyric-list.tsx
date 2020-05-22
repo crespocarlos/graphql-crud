@@ -35,9 +35,9 @@ const LyricList: React.FC<LyricListProps> = ({ lyrics }) => {
         likeLyric: {
           id,
           __typename: 'LyricType',
-          likes: likes + 1
-        }
-      }
+          likes: likes + 1,
+        },
+      },
     })
   }
 

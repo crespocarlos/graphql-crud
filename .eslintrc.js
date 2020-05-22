@@ -7,7 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'prettier',
     'plugin:jsx-a11y/recommended',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
   ],
   plugins: [
     'react',
@@ -15,26 +15,27 @@ module.exports = {
     'prettier',
     'import',
     'jsx-a11y',
-    '@typescript-eslint',,
-    'react-hooks'
+    '@typescript-eslint',
+    'react-hooks',
   ],
   settings: {
     'html/indent': '0',
     es6: true,
     react: {
-      version: 'detect'
+      version: 'detect',
     },
     propWrapperFunctions: ['forbidExtraProps'],
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
-      }
-    }
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+      },
+    },
   },
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
+    jest: true,
   },
   globals: {
     google: true,
@@ -42,15 +43,15 @@ module.exports = {
     mount: true,
     context: true,
     expect: true,
-    jsdom: true
+    jsdom: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      modules: true
-    }
+      modules: true,
+    },
   },
   rules: {
     eqeqeq: ['error', 'smart'],
@@ -60,14 +61,14 @@ module.exports = {
       'warn',
       {
         varsIgnorePattern: '^_',
-        argsIgnorePattern: '^_'
-      }
+        argsIgnorePattern: '^_',
+      },
     ],
     'prefer-const': [
       'error',
       {
-        destructuring: 'any'
-      }
+        destructuring: 'any',
+      },
     ],
     'no-restricted-modules': ['error', 'chai'],
     'no-debugger': 'warn',
@@ -136,7 +137,7 @@ module.exports = {
       'statusbar',
       'stop',
       'toolbar',
-      'top'
+      'top',
     ],
     'no-restricted-imports': [
       'error',
@@ -145,10 +146,10 @@ module.exports = {
           {
             name: 'react-redux',
             importNames: ['connect'],
-            message: 'Please use connect from @glass/core/store instead.'
-          }
-        ]
-      }
+            message: 'Please use connect from @glass/core/store instead.',
+          },
+        ],
+      },
     ],
     'no-useless-catch': 0,
     'require-atomic-updates': 0,
@@ -165,12 +166,11 @@ module.exports = {
     'react/jsx-no-target-blank': LINT_ALL_WARNINGS,
     'react/jsx-curly-brace-presence': [
       'error',
-      { children: 'ignore', props: 'never' }
+      { children: 'ignore', props: 'never' },
     ],
     'react/display-name': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-
 
     // Accessibility rules
     'jsx-a11y/click-events-have-key-events': LINT_ALL_WARNINGS,
@@ -192,10 +192,11 @@ module.exports = {
 
     ...(LINT_DEPENDENCIES
       ? {
-          'local-rules/disallow-undeclared-imports': 'warn'
+          'local-rules/disallow-undeclared-imports': 'warn',
         }
-      : {})
+      : {}),
   },
+  ignorePatterns: ['init-mongo.js'],
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
@@ -203,8 +204,8 @@ module.exports = {
         // done by the TS compiler
         'no-unused-vars': 'off',
         'import/no-unresolved': 'off',
-        'import/named': 'off'
-      }
-    }
-  ]
+        'import/named': 'off',
+      },
+    },
+  ],
 }

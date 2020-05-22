@@ -2,10 +2,10 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
 } from 'graphql'
 import LyricType from './lyricType'
-import { Song } from '../models'
+import Song from '../models/song'
 
 const SongType: GraphQLObjectType = new GraphQLObjectType({
   name: 'SongType',
@@ -16,9 +16,9 @@ const SongType: GraphQLObjectType = new GraphQLObjectType({
       type: new GraphQLList(LyricType),
       resolve(parentValue) {
         return Song.findLyrics(parentValue.id)
-      }
-    }
-  })
+      },
+    },
+  }),
 })
 
 export default SongType

@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "lib": ["dom", "es2017", "es2018.promise"],
     "strict": true,
-    "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -16,9 +17,14 @@
     "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "removeComments": false
   },
   "exclude": [
     "node_modules",
     "dist"
+  ],
+  "include": [
+    "scripts",
+    "config",
   ]
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import fetchSongs from '../queries/fetchSongs'
 
@@ -8,7 +8,7 @@ type SongListVariable = {
   id: number
 }
 
-type SongListResponse = {
+export type SongListResponse = {
   songs: Array<{
     id: number
     title: string
@@ -18,7 +18,7 @@ const SongList = () => {
   const [deleteSong] = useMutation<SongListResponse, SongListVariable>(
     DELETE_SONG,
     {
-      refetchQueries: [{ query: fetchSongs }]
+      refetchQueries: [{ query: fetchSongs }],
     }
   )
   const { loading, data } = useQuery<SongListResponse, SongListVariable>(

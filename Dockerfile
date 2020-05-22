@@ -1,6 +1,13 @@
-# Pull image.
-FROM bitnami/mongodb:latest
+FROM node:alpine as builder
 
+WORKDIR /app
+COPY package.json .
 
-#docker build -t graphql-course -f Dockerfile .
-#docker run -p 27017:27017 --name graphql-course -d mongo
+RUN npm install
+
+COPY . .
+
+RUN npm run build:frontend
+
+FROM nginx
+COPY --from=builder /app/dist /usr/share/nginx/html

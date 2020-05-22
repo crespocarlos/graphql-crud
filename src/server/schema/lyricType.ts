@@ -2,9 +2,9 @@ import {
   GraphQLObjectType,
   GraphQLID,
   GraphQLInt,
-  GraphQLString
+  GraphQLString,
 } from 'graphql'
-import { Lyric, ILyricModel } from '../models'
+import Lyric, { ILyricModel } from '../models/lyric'
 import songType from './songType'
 
 const LyricType: GraphQLObjectType = new GraphQLObjectType({
@@ -21,9 +21,9 @@ const LyricType: GraphQLObjectType = new GraphQLObjectType({
           .then((lyric: ILyricModel | null) => {
             return lyric ? lyric.song : null
           })
-      }
-    }
-  })
+      },
+    },
+  }),
 })
 
 export default LyricType

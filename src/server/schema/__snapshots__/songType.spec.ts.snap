@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SongType fetches single song 1`] = `
+Object {
+  "data": Object {
+    "song": Object {
+      "id": "1",
+      "lyrics": Array [
+        Object {
+          "content": "bla",
+          "id": "2",
+          "likes": 10,
+        },
+      ],
+      "title": "testById",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

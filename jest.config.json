@@ -1,0 +1,19 @@
+{
+	"name": "graphql-crud",
+	"testEnvironment": "node",
+	"transform": {
+    "^.+\\.tsx?$": "ts-jest"
+	},
+	"testMatch": [
+    "**/@(*.)@(spec|test).(j|t)s?(x)"
+	],
+	"testPathIgnorePatterns": [
+		"/node_modules/"
+	],
+	"globals": {
+		"ts-jest": {
+			"tsConfig": "./tsconfig.json",
+			"isolatedModules": true
+		}
+	}
+}
