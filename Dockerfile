@@ -1,4 +1,4 @@
-FROM node:alpine as builder
+FROM node:alpine
 
 WORKDIR /app
 COPY package.json .
@@ -10,4 +10,5 @@ COPY . .
 RUN npm run build:frontend
 
 FROM nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+COPY --from=0 /app/dist /usr/share/nginx/html

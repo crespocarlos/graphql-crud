@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ccrespo/graphql-crud -f Dockerfile.dev .
+
+script:
+  - docker run ccrespo/graphql-crud npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "graphql-crud"
+  env: "GraphqlCrud-env"
+  bucket-name: "elasticbeanstalk-us-east-2-224595882284"
+  bucket-path: "graphql-crud"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
