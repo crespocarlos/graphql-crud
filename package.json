@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "postinstall": "lerna bootstrap",
+    "postinstall": "yarn bootstrap",
     "build:frontend": "yarn workspace @lyrical/frontend build",
     "build:server": "yarn workspace @lyrical/server build",
     "start:frontend": "yarn workspace @lyrical/frontend start",

@@ -1,13 +1,16 @@
 FROM node:alpine
 
+RUN npm i lerna -g --loglevel notice
+
 WORKDIR /app
-COPY package*.json ./
+COPY package.json yarn.lock lerna.json ./
 
-RUN npm install
+RUN yarn install --pure-lockfile
 
-COPY . .
+COPY frontend/ ./frontend
 
-RUN npm run build:frontend
+RUN yarn bootstrap
+RUN yarn build:frontend
 
 FROM nginx
 EXPOSE 80

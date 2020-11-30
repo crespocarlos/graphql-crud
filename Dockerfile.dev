@@ -4,6 +4,7 @@ RUN npm i lerna -g --loglevel notice
 
 WORKDIR '/app'
 
+COPY jest.config.json tsconfig.json ./
 COPY package.json yarn.lock lerna.json ./
 
 RUN yarn install --pure-lockfile
@@ -11,6 +12,6 @@ RUN yarn install --pure-lockfile
 COPY frontend/ ./frontend
 COPY server/ ./server
 
-RUN npx lerna bootstrap
+RUN yarn bootstrap
 
 CMD ["npm", "run", "start:dev"]
