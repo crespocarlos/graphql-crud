@@ -5,7 +5,7 @@ import { BrowserRouter, Switch } from 'react-router-dom'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import './style/style.css'
+import './index.css'
 
 const SongList = React.lazy(() => import('./components/song-list'))
 const SongCreate = React.lazy(() => import('./components/song-create'))

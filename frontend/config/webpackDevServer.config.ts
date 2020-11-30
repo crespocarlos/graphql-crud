@@ -1,8 +1,8 @@
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware'
-import config from './webpack.config'
 import paths from './paths'
 import WebpackDevServer from 'webpack-dev-server'
+import { statsOptions } from './webpack.config'
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
 const host = process.env.HOST || '0.0.0.0'
@@ -20,11 +20,12 @@ const webpackConfig = (
     watchContentBase: true,
     hot: true,
     port: 8080,
-    publicPath: config.output?.publicPath,
-    quiet: true,
+    publicPath: paths.servedPath,
+    quiet: false,
     watchOptions: {
       ignored: /node_modules/,
     },
+    stats: statsOptions,
     https: protocol === 'https',
     host: host,
     overlay: false,

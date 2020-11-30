@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/react-hooks'
+import { FETCH_SONGS } from '../queries/songs'
 
 type SongListVariable = {
   id: number
@@ -60,15 +61,6 @@ export const DELETE_SONG = gql`
   mutation DeleteSong($id: ID) {
     deleteSong(id: $id) {
       id
-    }
-  }
-`
-
-export const FETCH_SONGS = gql`
-  {
-    songs {
-      id
-      title
     }
   }
 `

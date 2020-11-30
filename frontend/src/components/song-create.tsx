@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import { Link, useHistory } from 'react-router-dom'
-import query from '../queries/fetchSongs'
 import { useMutation } from '@apollo/react-hooks'
+import { FETCH_SONGS } from '../queries/songs'
 
 type SongCreatePayload = {
   content: string
@@ -22,7 +22,7 @@ const SongCreate = () => {
 
     addSong({
       variables: { title },
-      refetchQueries: [{ query }],
+      refetchQueries: [{ query: FETCH_SONGS }],
     }).then(() => history.push('/'))
   }
 

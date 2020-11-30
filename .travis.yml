@@ -10,8 +10,8 @@ script:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
-  app: "docker"
-  env: "Docker-env"
+  app: "graphql-crud"
+  env: "GraphqlCrud-env"
   bucket: "elasticbeanstalk-us-east-2-224595882284"
   bucket_path: "graphql-crud"
   on:

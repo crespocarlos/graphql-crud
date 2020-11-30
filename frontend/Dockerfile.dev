@@ -5,7 +5,7 @@ WORKDIR '/app'
 COPY ./package.json yarn.lock ./
 COPY ./lerna.json ./
 
-RUN yarn install --pure-lockfile
+RUN yarn install --frozen-lockfile
 
 COPY ./frontend ./frontend
 

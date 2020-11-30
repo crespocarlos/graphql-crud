@@ -2,13 +2,10 @@ import React from 'react'
 import { MockedProvider } from '@apollo/react-testing'
 import { act, create, ReactTestRendererJSON } from 'react-test-renderer'
 import { MemoryRouter } from 'react-router'
+import { FETCH_SONGS } from '../queries/songs'
 
 // The component AND the query need to be exported
-import SongList, {
-  SongListResponse,
-  FETCH_SONGS,
-  DELETE_SONG,
-} from './song-list'
+import SongList, { SongListResponse, DELETE_SONG } from './song-list'
 
 // jest.mock('react-router-dom') // <- Use this line
 

@@ -75,7 +75,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 
       const appPackage = require(paths.appPackageJson)
       const publicUrl = paths.publicUrl
-      const publicPath = config?.output?.publicPath || publicUrl
+      const publicPath = paths.servedPath
       const buildFolder = path.relative(process.cwd(), paths.appBuild)
       printHostingInstructions(
         appPackage,
@@ -105,10 +105,10 @@ const build = (
   const compiler = webpack(config)
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      if (err) {
+      if (err || !stats) {
         return reject(err)
       }
-      const messages = formatWebpackMessages(stats.toJson({}, true))
+      const messages = formatWebpackMessages(stats.toJson('minimal'))
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
         // of the same problem, but confuse the reader with noise.
