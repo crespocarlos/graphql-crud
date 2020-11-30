@@ -9,12 +9,12 @@ import LyricList from './lyric-list'
 type SongDetailProp = RouteComponentProps<{ id: string }, {}>
 
 const SongDetail: React.FC<SongDetailProp> = ({ ...props }) => {
-  const id = parseInt(props.match.params.id, 10)
+  const id = props.match.params.id
   const { loading, data } = useQuery(fetchSong, {
     variables: { id },
   })
 
-  const { song } = data
+  const { song } = data || {}
   return loading ? (
     <div>Loading...</div>
   ) : (

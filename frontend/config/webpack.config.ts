@@ -68,7 +68,7 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.(ts|tsx)?$/,
-        exclude: [/node_modules/],
+        include: paths.appSrc,
         use: {
           loader: 'ts-loader',
         },

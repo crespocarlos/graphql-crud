@@ -1,10 +1,16 @@
-FROM node:alpine
+FROM node:alpine as builder
+
+RUN npm i lerna -g --loglevel notice
 
 WORKDIR '/app'
 
-COPY package.json .
-RUN npm install
+COPY package.json yarn.lock lerna.json ./
 
-COPY . .
+RUN yarn install --pure-lockfile
 
-CMD ["npm", "run", "start:server"]
+COPY frontend/ ./frontend
+COPY server/ ./server
+
+RUN npx lerna bootstrap
+
+CMD ["npm", "run", "start:dev"]

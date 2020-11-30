@@ -8,7 +8,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react",
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -22,9 +21,5 @@
   "exclude": [
     "node_modules",
     "dist"
-  ],
-  "include": [
-    "scripts",
-    "config",
   ]
 }

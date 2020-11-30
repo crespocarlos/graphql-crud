@@ -9,10 +9,11 @@ export default {
   appBuild: resolveApp('dist'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexTs: resolveApp('src/frontend/index.tsx'),
+  appIndexTs: resolveApp('src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
-  yarnLockFile: resolveApp('yarn.lock'),
+  yarnLockFile: resolveApp('../yarn.lock'),
   publicUrl: resolveApp('public'),
   servedPath: '/',
+  tsConfig: resolveApp('src/tsconfig.json'),
 }

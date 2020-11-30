@@ -7,24 +7,33 @@ services:
       - MONGO_INITDB_USERNAME=ccrespo
       - MONGO_INITDB_PASSWORD=secret
     volumes:
-      - ./config/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./server/config/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
     ports:
       - '27017-27019:27017-27019'
-  web:
+  server:
     build: 
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: ./server/Dockerfile.dev
     ports: 
       - '4000:4000'
     volumes:
-      - /app/modules
-      - .:/app
-  tests:
+      - /app/server/node_modules
+      - ./server:/app/server
+      - ./tsconfig.json:/app/tsconfig.json
+    command: npm run start:server
+    depends_on: 
+      - mongo
+    links:
+      - client
+  client:
     build: 
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: ./server/Dockerfile.dev
+    ports: 
+      - '3000:3000'
     volumes:
-      - /app/modules
-      - .:/app
-    command: ['npm', 'run', 'test']
+      - /app/frontend/node_modules
+      - ./frontend:/app/frontend
+      - ./tsconfig.json:/app/tsconfig.json
+    command: npm run start:frontend

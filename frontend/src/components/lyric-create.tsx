@@ -3,17 +3,17 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
 type LyricCreatePayload = {
-  songId: number
+  songId: string
   content: string
 }
 
 type LyricCreateVariable = {
-  songId: number
+  songId: string
   content: string
 }
 
 type LyricCreateProps = {
-  songId: number
+  songId: string
 }
 
 const LyricCreate: React.FC<LyricCreateProps> = ({ songId }) => {

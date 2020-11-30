@@ -24,7 +24,7 @@ LyricSchema.statics.like = function (id: number) {
   const Lyric = mongoose.model<ILyricModel>('lyric')
 
   return Lyric.findById(id).then((lyric: ILyricModel | null) => {
-    if (!lyric) return lyric as unknown
+    if (!lyric) return null
 
     ++lyric.likes
     return lyric.save()

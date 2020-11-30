@@ -1,5 +1,5 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/react-testing'
+import { MockedProvider } from '@apollo/client/testing'
 import { act, create } from 'react-test-renderer'
 
 // The component AND the query need to be exported
