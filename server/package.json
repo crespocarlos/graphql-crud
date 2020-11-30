@@ -10,11 +10,12 @@
     "build": "tsc -p ./server"
   },
   "dependencies": {
-    "apollo-server-express": "^2.14.0",
-    "body-parser": "^1.16.0",
-    "express": "^4.14.0",
-    "graphql": "^14.0.0",
-    "mongoose": "^5.9.13",
-    "ts-node": "^8.3.0"
+    "apollo-server-express": "^2.19.0",
+    "apollo-server-testing": "^2.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "mongoose": "^5.10.18",
+    "ts-node": "^9.0.0"
   }
 }

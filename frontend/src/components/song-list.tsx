@@ -2,7 +2,6 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import fetchSongs from '../queries/fetchSongs'
 
 type SongListVariable = {
   id: number
@@ -18,11 +17,11 @@ const SongList = () => {
   const [deleteSong] = useMutation<SongListResponse, SongListVariable>(
     DELETE_SONG,
     {
-      refetchQueries: [{ query: fetchSongs }],
+      refetchQueries: [{ query: FETCH_SONGS }],
     }
   )
   const { loading, data } = useQuery<SongListResponse, SongListVariable>(
-    fetchSongs,
+    FETCH_SONGS,
     { notifyOnNetworkStatusChange: true }
   )
 
@@ -57,10 +56,19 @@ const SongList = () => {
   )
 }
 
-const DELETE_SONG = gql`
+export const DELETE_SONG = gql`
   mutation DeleteSong($id: ID) {
     deleteSong(id: $id) {
       id
+    }
+  }
+`
+
+export const FETCH_SONGS = gql`
+  {
+    songs {
+      id
+      title
     }
   }
 `

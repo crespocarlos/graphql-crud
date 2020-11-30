@@ -1,4 +1,3 @@
-sudo: required
 services:
   - docker
 
@@ -13,8 +12,8 @@ deploy:
   region: "us-east-2"
   app: "docker"
   env: "Docker-env"
-  bucket-name: "elasticbeanstalk-us-east-2-224595882284"
-  bucket-path: "graphql-crud"
+  bucket: "elasticbeanstalk-us-east-2-224595882284"
+  bucket_path: "graphql-crud"
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY

@@ -1,12 +1,16 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/client/testing'
-import { act, create } from 'react-test-renderer'
+import { MockedProvider } from '@apollo/react-testing'
+import { act, create, ReactTestRendererJSON } from 'react-test-renderer'
+import { MemoryRouter } from 'react-router'
 
 // The component AND the query need to be exported
-import fetchSongs from '../queries/fetchSongs'
-import SongList, { SongListResponse } from './song-list'
+import SongList, {
+  SongListResponse,
+  FETCH_SONGS,
+  DELETE_SONG,
+} from './song-list'
 
-jest.mock('react-router-dom') // <- Use this line
+// jest.mock('react-router-dom') // <- Use this line
 
 const wait = (amount = 0, func: () => void) =>
   act(() => new Promise((resolve) => setTimeout(resolve, amount)).then(func))
@@ -14,7 +18,7 @@ const wait = (amount = 0, func: () => void) =>
 const getMocks = (songs: SongListResponse['songs']) => [
   {
     request: {
-      query: fetchSongs,
+      query: FETCH_SONGS,
     },
     result: {
       data: {
@@ -22,17 +26,27 @@ const getMocks = (songs: SongListResponse['songs']) => [
       },
     },
   },
+  {
+    request: {
+      query: DELETE_SONG,
+      variables: { name: 'Buck' },
+    },
+    result: { data: songs },
+  },
 ]
 
 describe('<SongList />', () => {
   it('should render loading state initially', () => {
     const container = create(
       <MockedProvider mocks={getMocks([])}>
-        <SongList />
+        <MemoryRouter>
+          <SongList />
+        </MemoryRouter>
       </MockedProvider>
     )
 
-    expect(container.toJSON()?.children).toContain('Loading...')
+    const tree: ReactTestRendererJSON = container.toJSON() as any
+    expect(tree?.children).toContain('Loading...')
   })
 
   it('renders without error', async () => {
@@ -41,7 +55,9 @@ describe('<SongList />', () => {
         mocks={getMocks([{ id: 1, title: 'lalala' }])}
         addTypename={false}
       >
-        <SongList />
+        <MemoryRouter>
+          <SongList />
+        </MemoryRouter>
       </MockedProvider>
     )
 
