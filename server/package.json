@@ -1,13 +1,13 @@
 {
   "name": "@lyrical/server",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "license": "ISC",
   "scripts": {
-    "start:dev": "tsc-watch server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
-    "start": "ts-node ./server.ts",
+    "start:dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "start": "node ./dist/server.js",
     "test": "jest --config ./jest.config.js",
-    "build": "tsc -p ./server"
+    "build": "tsc -p ."
   },
   "dependencies": {
     "apollo-server-express": "^2.19.0",
@@ -17,5 +17,8 @@
     "graphql": "^15.4.0",
     "mongoose": "^5.10.18",
     "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0"
   }
 }

@@ -11,29 +11,29 @@ services:
       - ./mongo-volume:/data/db
     ports:
       - '27017-27019:27017-27019'
-  server:
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3050:80'
+    depends_on:
+      - api
+      - client
+  api:
     build: 
       context: .
       dockerfile: ./server/Dockerfile.dev
-    ports: 
-      - '4000:4000'
     volumes:
       - /app/server/node_modules
       - ./server:/app/server
       - ./tsconfig.json:/app/tsconfig.json
-    command: npm run start:server
-    depends_on: 
-      - mongo
-    links:
-      - client
   client:
     build: 
       context: .
-      dockerfile: ./server/Dockerfile.dev
-    ports: 
-      - '3000:3000'
+      dockerfile: ./frontend/Dockerfile.dev
     volumes:
       - /app/frontend/node_modules
       - ./frontend:/app/frontend
       - ./tsconfig.json:/app/tsconfig.json
-    command: npm run start:frontend

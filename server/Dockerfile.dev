@@ -13,4 +13,4 @@ COPY ./server ./server
 
 RUN npx lerna bootstrap
 
-CMD ["yarn", "run", "start:server"]
+CMD ["yarn", "run", "start:dev:server"]

@@ -1,8 +1,9 @@
-FROM node:alpine
+FROM node:alpine as builder
 
 RUN npm i lerna -g --loglevel notice
 
 WORKDIR /app
+
 COPY package.json yarn.lock lerna.json ./
 COPY tsconfig.json ./
 

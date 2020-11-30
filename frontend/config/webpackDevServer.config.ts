@@ -21,7 +21,7 @@ const webpackConfig = (
     hot: true,
     port: 8080,
     publicPath: paths.servedPath,
-    quiet: false,
+    quiet: true,
     watchOptions: {
       ignored: /node_modules/,
     },

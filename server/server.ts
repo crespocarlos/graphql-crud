@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 
 import schema from './schema/schema'
 
-const port = 4000
+const PORT = 4000
 const app = express()
 
 const server = new ApolloServer({ schema })
@@ -34,9 +34,9 @@ server.applyMiddleware({
   path: '/',
 })
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(
-    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
   )
 })
 
